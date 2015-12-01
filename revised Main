@@ -1,0 +1,64 @@
+import java.util.Random;
+
+public class Main 
+{
+	
+	static int[] code = new int[4];
+	static int[][] guess = new int[4][12];
+	Random randomGen = new Random();
+	
+	//|------|------|------|------|------|------|
+	//| red  |orange|yellow|green | blue |purple|
+	//|------|------|------|------|------|------|
+	//|   1  |   2  |   3  |   4  |   5  |   6  |
+	//|------|------|------|------|------|------|
+	
+	
+	
+	public void randomCode()
+	{
+		//---------------generates a random code---------------
+		for (int i = 0; i < code.length;i++)//rotates through positions within the code
+		{
+			code[i] = randomGen.nextInt(6) + 1;//generates a number in that position
+		}
+	}
+	
+	public void guess()
+	{
+		//---------------Guess testing---------------
+		for (int i=1;i<=12;i++)//rotates through different guesses
+		{
+			
+			//---------------get the guess---------------
+			for (int j=1;j<=4;j++)//rotates through positions within a guess
+			{
+				guess[j][i] = 000;//000 is a place holder for our input
+			}
+			
+			//---------------test the guess---------------
+			for (int k=1;k<=4;k++)
+			{
+				if (guess[k][i]==code[k])//test for exact match
+				{
+					//place black peg
+				}
+				else
+				{
+					for (int l=1;l<=4;l++)//rotates through the other positions of the guess
+					{
+						if (guess[k][i]==code[l])//test for non-exact match
+						{
+							//place white peg
+						}
+					}	
+				}
+			}
+			//if (all black pegs)
+			//output victory
+		}
+	}
+
+}
+//slightly revised new Main. still needs the colors to be set and the obvious 
+//indication that you've wont and the buttons need to be linked to the pegs.
