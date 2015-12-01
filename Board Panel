@@ -1,0 +1,358 @@
+package board;
+import javax.swing.*;
+import java.awt.BorderLayout;
+
+import javax.swing.*;
+
+public class BoardPanel extends JPanel{
+
+	public static void main(String[] args) {
+		
+		JFrame frame = new boardframe();
+		frame.show();
+		// I have no idea what I'm doing here but it kinda works
+		}
+}
+
+	class boardframe extends JFrame {
+		boardframe() {
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setLayout(null);
+			setSize(376, 360);	
+			setTitle("Mastermind");
+			getContentPane().add(new ButtonPanel());
+			//setting the size title and other stuff
+		}
+	}
+
+	class ButtonPanel extends JPanel {
+		ButtonPanel() {
+			String[] coloursString = { "----", "red", "orange", "yellow", "green", "blue", "purple"};
+			setSize(376, 360);
+			setLayout(null);
+			//put the colours in an array for the drop down menus to grab
+			
+			//all these buttons :O
+			JButton indicator011 = new JButton("");
+			add(indicator011);
+			indicator011.setBounds(0, 0, 40, 15);
+			JButton indicator012 = new JButton("");
+			add(indicator012);
+			indicator012.setBounds(40, 0, 40, 15);
+			JButton guess011 = new JButton("");
+			add(guess011);
+			guess011.setBounds(100, 0, 40, 15);
+			JButton guess012 = new JButton("");
+			add(guess012);
+			guess012.setBounds(140, 0, 40, 15);
+			JButton guess013 = new JButton("");
+			add(guess013);
+			guess013.setBounds(180, 0, 40, 15);
+			JButton guess014 = new JButton("");
+			add(guess014);
+			guess014.setBounds(220, 0, 40, 15);
+			JButton indicator013 = new JButton("");
+			add(indicator013);
+			indicator013.setBounds(280, 0, 40, 15);
+			JButton indicator014 = new JButton("");
+			add(indicator014);
+			indicator014.setBounds(320, 0, 40, 15);
+			
+			JButton indicator021 = new JButton("");
+			add(indicator021);
+			indicator021.setBounds(0, 20, 40, 15);
+			JButton indicator022 = new JButton("");
+			add(indicator022);
+			indicator022.setBounds(40, 20, 40, 15);
+			JButton guess021 = new JButton("");
+			add(guess021);
+			guess021.setBounds(100, 20, 40, 15);
+			JButton guess022 = new JButton("");
+			add(guess022);
+			guess022.setBounds(140, 20, 40, 15);
+			JButton guess023 = new JButton("");
+			add(guess023);
+			guess023.setBounds(180, 20, 40, 15);
+			JButton guess024 = new JButton("");
+			add(guess024);
+			guess024.setBounds(220, 20, 40, 15);
+			JButton indicator023 = new JButton("");
+			add(indicator023);
+			indicator023.setBounds(280, 20, 40, 15);
+			JButton indicator024 = new JButton("");
+			add(indicator024);
+			indicator024.setBounds(320, 20, 40, 15);
+			
+			JButton indicator031 = new JButton("");
+			add(indicator031);
+			indicator031.setBounds(0, 40, 40, 15);
+			JButton indicator032 = new JButton("");
+			add(indicator032);
+			indicator032.setBounds(40, 40, 40, 15);
+			JButton guess031 = new JButton("");
+			add(guess031);
+			guess031.setBounds(100, 40, 40, 15);
+			JButton guess032 = new JButton("");
+			add(guess032);
+			guess032.setBounds(140, 40, 40, 15);
+			JButton guess033 = new JButton("");
+			add(guess033);
+			guess033.setBounds(180, 40, 40, 15);
+			JButton guess034 = new JButton("");
+			add(guess034);
+			guess034.setBounds(220, 40, 40, 15);
+			JButton indicator033 = new JButton("");
+			add(indicator033);
+			indicator033.setBounds(280, 40, 40, 15);
+			JButton indicator034 = new JButton("");
+			add(indicator034);
+			indicator034.setBounds(320, 40, 40, 15);
+			
+			JButton indicator041 = new JButton("");
+			add(indicator041);
+			indicator041.setBounds(0, 60, 40, 15);
+			JButton indicator042 = new JButton("");
+			add(indicator042);
+			indicator042.setBounds(40, 60, 40, 15);
+			JButton guess041 = new JButton("");
+			add(guess041);
+			guess041.setBounds(100, 60, 40, 15);
+			JButton guess042 = new JButton("");
+			add(guess042);
+			guess042.setBounds(140, 60, 40, 15);
+			JButton guess043 = new JButton("");
+			add(guess043);
+			guess043.setBounds(180, 60, 40, 15);
+			JButton guess044 = new JButton("");
+			add(guess044);
+			guess044.setBounds(220, 60, 40, 15);
+			JButton indicator043 = new JButton("");
+			add(indicator043);
+			indicator043.setBounds(280, 60, 40, 15);
+			JButton indicator044 = new JButton("");
+			add(indicator044);
+			indicator044.setBounds(320, 60, 40, 15);
+			
+			JButton indicator051 = new JButton("");
+			add(indicator051);
+			indicator051.setBounds(0, 80, 40, 15);
+			JButton indicator052 = new JButton("");
+			add(indicator052);
+			indicator052.setBounds(40, 80, 40, 15);
+			JButton guess051 = new JButton("");
+			add(guess051);
+			guess051.setBounds(100, 80, 40, 15);
+			JButton guess052 = new JButton("");
+			add(guess052);
+			guess052.setBounds(140, 80, 40, 15);
+			JButton guess053 = new JButton("");
+			add(guess053);
+			guess053.setBounds(180, 80, 40, 15);
+			JButton guess054 = new JButton("");
+			add(guess054);
+			guess054.setBounds(220, 80, 40, 15);
+			JButton indicator053 = new JButton("");
+			add(indicator053);
+			indicator053.setBounds(280, 80, 40, 15);
+			JButton indicator054 = new JButton("");
+			add(indicator054);
+			indicator054.setBounds(320, 80, 40, 15);
+			
+			JButton indicator061 = new JButton("");
+			add(indicator061);
+			indicator061.setBounds(0, 100, 40, 15);
+			JButton indicator062 = new JButton("");
+			add(indicator062);
+			indicator062.setBounds(40, 100, 40, 15);
+			JButton guess061 = new JButton("");
+			add(guess061);
+			guess061.setBounds(100, 100, 40, 15);
+			JButton guess062 = new JButton("");
+			add(guess062);
+			guess062.setBounds(140, 100, 40, 15);
+			JButton guess063 = new JButton("");
+			add(guess063);
+			guess063.setBounds(180, 100, 40, 15);
+			JButton guess064 = new JButton("");
+			add(guess064);
+			guess064.setBounds(220, 100, 40, 15);
+			JButton indicator063 = new JButton("");
+			add(indicator063);
+			indicator063.setBounds(280, 100, 40, 15);
+			JButton indicator064 = new JButton("");
+			add(indicator064);
+			indicator064.setBounds(320, 100, 40, 15);
+			
+			JButton indicator071 = new JButton("");
+			add(indicator071);
+			indicator071.setBounds(0, 120, 40, 15);
+			JButton indicator072 = new JButton("");
+			add(indicator072);
+			indicator072.setBounds(40, 120, 40, 15);
+			JButton guess071 = new JButton("");
+			add(guess071);
+			guess071.setBounds(100, 120, 40, 15);
+			JButton guess072 = new JButton("");
+			add(guess072);
+			guess072.setBounds(140, 120, 40, 15);
+			JButton guess073 = new JButton("");
+			add(guess073);
+			guess073.setBounds(180, 120, 40, 15);
+			JButton guess074 = new JButton("");
+			add(guess074);
+			guess074.setBounds(220, 120, 40, 15);
+			JButton indicator073 = new JButton("");
+			add(indicator073);
+			indicator073.setBounds(280, 120, 40, 15);
+			JButton indicator074 = new JButton("");
+			add(indicator074);
+			indicator074.setBounds(320, 120, 40, 15);
+			
+			JButton indicator081 = new JButton("");
+			add(indicator081);
+			indicator081.setBounds(0, 140, 40, 15);
+			JButton indicator082 = new JButton("");
+			add(indicator082);
+			indicator082.setBounds(40, 140, 40, 15);
+			JButton guess081 = new JButton("");
+			add(guess081);
+			guess081.setBounds(100, 140, 40, 15);
+			JButton guess082 = new JButton("");
+			add(guess082);
+			guess082.setBounds(140, 140, 40, 15);
+			JButton guess083 = new JButton("");
+			add(guess083);
+			guess083.setBounds(180, 140, 40, 15);
+			JButton guess084 = new JButton("");
+			add(guess084);
+			guess084.setBounds(220, 140, 40, 15);
+			JButton indicator083 = new JButton("");
+			add(indicator083);
+			indicator083.setBounds(280, 140, 40, 15);
+			JButton indicator084 = new JButton("");
+			add(indicator084);
+			indicator084.setBounds(320, 140, 40, 15);
+			
+			JButton indicator091 = new JButton("");
+			add(indicator091);
+			indicator091.setBounds(0, 160, 40, 15);
+			JButton indicator092 = new JButton("");
+			add(indicator092);
+			indicator092.setBounds(40, 160, 40, 15);
+			JButton guess091 = new JButton("");
+			add(guess091);
+			guess091.setBounds(100, 160, 40, 15);
+			JButton guess092 = new JButton("");
+			add(guess092);
+			guess092.setBounds(140, 160, 40, 15);
+			JButton guess093 = new JButton("");
+			add(guess093);
+			guess093.setBounds(180, 160, 40, 15);
+			JButton guess094 = new JButton("");
+			add(guess094);
+			guess094.setBounds(220, 160, 40, 15);
+			JButton indicator093 = new JButton("");
+			add(indicator093);
+			indicator093.setBounds(280, 160, 40, 15);
+			JButton indicator094 = new JButton("");
+			add(indicator094);
+			indicator094.setBounds(320, 160, 40, 15);
+			
+			JButton indicator101 = new JButton("");
+			add(indicator101);
+			indicator101.setBounds(0, 180, 40, 15);
+			JButton indicator102 = new JButton("");
+			add(indicator102);
+			indicator102.setBounds(40, 180, 40, 15);
+			JButton guess101 = new JButton("");
+			add(guess101);
+			guess101.setBounds(100, 180, 40, 15);
+			JButton guess102 = new JButton("");
+			add(guess102);
+			guess102.setBounds(140, 180, 40, 15);
+			JButton guess103 = new JButton("");
+			add(guess103);
+			guess103.setBounds(180, 180, 40, 15);
+			JButton guess104 = new JButton("");
+			add(guess104);
+			guess104.setBounds(220, 180, 40, 15);
+			JButton indicator103 = new JButton("");
+			add(indicator103);
+			indicator103.setBounds(280, 180, 40, 15);
+			JButton indicator104 = new JButton("");
+			add(indicator104);
+			indicator104.setBounds(320, 180, 40, 15);
+			
+			JButton indicator111 = new JButton("");
+			add(indicator111);
+			indicator111.setBounds(0, 200, 40, 15);
+			JButton indicator112 = new JButton("");
+			add(indicator112);
+			indicator112.setBounds(40, 200, 40, 15);
+			JButton guess111 = new JButton("");
+			add(guess111);
+			guess111.setBounds(100, 200, 40, 15);
+			JButton guess112 = new JButton("");
+			add(guess112);
+			guess112.setBounds(140, 200, 40, 15);
+			JButton guess113 = new JButton("");
+			add(guess113);
+			guess113.setBounds(180, 200, 40, 15);
+			JButton guess114 = new JButton("");
+			add(guess114);
+			guess114.setBounds(220, 200, 40, 15);
+			JButton indicator113 = new JButton("");
+			add(indicator113);
+			indicator113.setBounds(280, 200, 40, 15);
+			JButton indicator114 = new JButton("");
+			add(indicator114);
+			indicator114.setBounds(320, 200, 40, 15);
+			
+			
+			JButton indicator121 = new JButton("");
+			add(indicator121);
+			indicator121.setBounds(0, 220, 40, 15);
+			JButton indicator122 = new JButton("");
+			add(indicator122);
+			indicator122.setBounds(40, 220, 40, 15);
+			JButton guess121 = new JButton("");
+			add(guess121);
+			guess121.setBounds(100, 220, 40, 15);
+			JButton guess122 = new JButton("");
+			add(guess122);
+			guess122.setBounds(140, 220, 40, 15);
+			JButton guess123 = new JButton("");
+			add(guess123);
+			guess123.setBounds(180, 220, 40, 15);
+			JButton guess124 = new JButton("");
+			add(guess124);
+			guess124.setBounds(220, 220, 40, 15);
+			JButton indicator123 = new JButton("");
+			add(indicator123);
+			indicator123.setBounds(280, 220, 40, 15);
+			JButton indicator124 = new JButton("");
+			add(indicator124);
+			indicator124.setBounds(320, 220, 40, 15);
+			
+			
+			//drop down menus
+			JComboBox choice1 = new JComboBox(coloursString);
+			add(choice1);
+			choice1.setBounds(20, 245, 80, 40);
+			JComboBox choice2 = new JComboBox(coloursString);
+			add(choice2);
+			choice2.setBounds(100, 245, 80, 40);
+			JComboBox choice3 = new JComboBox(coloursString);
+			add(choice3);
+			choice3.setBounds(180, 245, 80, 40);
+			JComboBox choice4 = new JComboBox(coloursString);
+			add(choice4);
+			choice4.setBounds(260, 245, 80, 40);
+			
+			//submit button no listener 
+			JButton submit = new JButton("Submit");
+			add(submit);
+			submit.setBounds(20, 290, 320, 20);
+		}
+	}
+
