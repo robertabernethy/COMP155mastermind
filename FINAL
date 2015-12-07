@@ -1,0 +1,1334 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+
+public class BoardPanel extends JPanel{
+	public int[] code = new int[4];
+	public int[][] response = new int[12][4];
+	public int[] attempt = new int[4];
+	public int i = 1;
+	public int[][] guess = new int [5][13];	
+	
+	
+	
+	public static void main(String[] args) {
+		BoardPanel board = new BoardPanel();
+		JFrame frame = board.new boardframe();
+		frame.show();
+		// I have no idea what I'm doing here but it kinda works
+	}
+
+	class boardframe extends JFrame {
+		boardframe() {
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setLayout(null);
+			setSize(376, 360);	
+			setTitle("Mastermind");
+			getContentPane().add(new ButtonPanel());
+			//setting the size title and other stuff
+		}
+	}
+
+	class ButtonPanel extends JPanel
+	{
+
+
+		
+		class randomCode {
+			Random randomGen = new Random();
+			{
+			//---------------generates a random code---------------
+			for (int g = 0; g < code.length;g++)//rotates through positions within the code
+			{
+				code[g] = randomGen.nextInt(6) + 1;//generates a number in that position
+				
+			}	
+			System.out.println(code);
+			}
+		}
+		
+		//creates an instance of main and runs randomCode void to generate the winning combo of colours
+		BoardPanel startGame = new BoardPanel();
+
+		ButtonPanel() {
+			String[] coloursString = { "----", "red", "orange", "yellow", "green", "blue", "pink"};
+			setSize(376, 360);
+			setLayout(null);
+			//put the colours in an array for the drop down menus to grab
+			
+			//all these buttons :O
+			JButton indicator011 = new JButton("");
+			add(indicator011);
+			indicator011.setBounds(0, 0, 40, 15);
+			while (response[0][0] == 1)
+				indicator011.setBackground(Color.white);
+			while (response[0][0] == 2)
+				indicator011.setBackground(Color.black);
+			JButton indicator012 = new JButton("");
+			add(indicator012);
+			indicator012.setBounds(40, 0, 40, 15);
+			while (response[0][1] == 1)
+				indicator012.setBackground(Color.white);
+			while (response[0][1] == 2)
+				indicator012.setBackground(Color.black);
+			
+			JButton guess011 = new JButton("");
+			add(guess011);
+			guess011.setBounds(100, 0, 40, 15);
+			while (guess[1][1] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][1] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][1] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][1] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][1] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][1] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton guess012 = new JButton("");
+			add(guess012);
+			guess012.setBounds(140, 0, 40, 15);
+	
+			while (guess[2][1] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][1] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][1] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][1] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][1] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][1] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton guess013 = new JButton("");
+			add(guess013);
+			guess013.setBounds(180, 0, 40, 15);
+			
+			while (guess[3][1] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][1] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][1] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][1] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][1] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][1] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton guess014 = new JButton("");
+			add(guess014);
+			guess014.setBounds(220, 0, 40, 15);
+	
+			while (guess[4][1] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][1] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][1] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][1] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][1] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][1] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton indicator013 = new JButton("");
+			add(indicator013);
+			indicator013.setBounds(280, 0, 40, 15);
+			while (response[0][2] == 1)
+				indicator013.setBackground(Color.white);
+			while (response[0][2] == 2)
+				indicator013.setBackground(Color.black);
+			JButton indicator014 = new JButton("");
+			add(indicator014);
+			indicator014.setBounds(320, 0, 40, 15);
+			while (response[0][3] == 1)
+				indicator014.setBackground(Color.white);
+			while (response[0][3] == 2)
+				indicator014.setBackground(Color.black);
+			
+			JButton indicator021 = new JButton("");
+			add(indicator021);
+			indicator021.setBounds(0, 20, 40, 15);
+			while (response[1][0] == 1)
+				indicator021.setBackground(Color.white);
+			while (response[1][0] == 2)
+				indicator021.setBackground(Color.black);
+			JButton indicator022 = new JButton("");
+			add(indicator022);
+			indicator022.setBounds(40, 20, 40, 15);
+			while (response[1][1] == 1)
+				indicator022.setBackground(Color.white);
+			while (response[1][1] == 2)
+				indicator022.setBackground(Color.black);
+			
+			JButton guess021 = new JButton("");
+			add(guess021);
+			guess021.setBounds(100, 20, 40, 15);
+			
+			while (guess[1][2] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][2] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][2] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][2] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][2] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][2] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton guess022 = new JButton("");
+			add(guess022);
+			guess022.setBounds(140, 20, 40, 15);
+			
+			while (guess[2][2] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][2] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][2] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][2] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][2] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][2] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton guess023 = new JButton("");
+			add(guess023);
+			guess023.setBounds(180, 20, 40, 15);
+			
+			while (guess[3][2] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][2] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][2] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][2] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][2] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][2] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton guess024 = new JButton("");
+			add(guess024);
+			guess024.setBounds(220, 20, 40, 15);
+			
+			while (guess[4][2] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][2] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][2] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][2] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][2] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][2] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton indicator023 = new JButton("");
+			add(indicator023);
+			indicator023.setBounds(280, 20, 40, 15);
+			while (response[1][2] == 1)
+				indicator023.setBackground(Color.white);
+			while (response[1][2] == 2)
+				indicator023.setBackground(Color.black);
+			JButton indicator024 = new JButton("");
+			add(indicator024);
+			indicator024.setBounds(320, 20, 40, 15);
+			while (response[1][3] == 1)
+				indicator024.setBackground(Color.white);
+			while (response[1][3] == 2)
+				indicator024.setBackground(Color.black);
+			
+			JButton indicator031 = new JButton("");
+			add(indicator031);
+			indicator031.setBounds(0, 40, 40, 15);
+			while (response[2][0] == 1)
+				indicator031.setBackground(Color.white);
+			while (response[2][0] == 2)
+				indicator031.setBackground(Color.black);
+			JButton indicator032 = new JButton("");
+			add(indicator032);
+			indicator032.setBounds(40, 40, 40, 15);
+			while (response[2][1] == 1)
+				indicator032.setBackground(Color.white);
+			while (response[2][1] == 2)
+				indicator032.setBackground(Color.black);
+			
+			JButton guess031 = new JButton("");
+			add(guess031);
+			guess031.setBounds(100, 40, 40, 15);
+			
+			while (guess[1][3] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][3] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][3] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][3] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][3] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][3] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton guess032 = new JButton("");
+			add(guess032);
+			guess032.setBounds(140, 40, 40, 15);
+
+			while (guess[2][3] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][3] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][3] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][3] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][3] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][3] == 6)
+				guess011.setBackground(Color.pink);
+	
+			JButton guess033 = new JButton("");
+			add(guess033);
+			guess033.setBounds(180, 40, 40, 15);
+			
+
+			while (guess[3][3] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][3] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][3] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][3] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][3] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][3] == 6)
+				guess011.setBackground(Color.pink);
+	
+			JButton guess034 = new JButton("");
+			add(guess034);
+			guess034.setBounds(220, 40, 40, 15);
+			
+	
+			while (guess[4][3] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][3] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][3] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][3] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][3] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][3] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton indicator033 = new JButton("");
+			add(indicator033);
+			indicator033.setBounds(280, 40, 40, 15);
+			while (response[2][2] == 1)
+				indicator033.setBackground(Color.white);
+			while (response[2][2] == 2)
+				indicator033.setBackground(Color.black);
+			JButton indicator034 = new JButton("");
+			add(indicator034);
+			indicator034.setBounds(320, 40, 40, 15);
+			while (response[2][3] == 1)
+				indicator034.setBackground(Color.white);
+			while (response[2][3] == 2)
+				indicator034.setBackground(Color.black);
+			
+			JButton indicator041 = new JButton("");
+			add(indicator041);
+			indicator041.setBounds(0, 60, 40, 15);
+			while (response[3][0] == 1)
+				indicator041.setBackground(Color.white);
+			while (response[3][0] == 2)
+				indicator041.setBackground(Color.black);
+			JButton indicator042 = new JButton("");
+			add(indicator042);
+			indicator042.setBounds(40, 60, 40, 15);
+			while (response[3][1] == 1)
+				indicator042.setBackground(Color.white);
+			while (response[3][1] == 2)
+				indicator042.setBackground(Color.black);
+			
+			JButton guess041 = new JButton("");
+			add(guess041);
+			guess041.setBounds(100, 60, 40, 15);
+			
+			
+			while (guess[1][4] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][4] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][4] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][4] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][4] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][4] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess042 = new JButton("");
+			add(guess042);
+			guess042.setBounds(140, 60, 40, 15);
+			
+	
+			while (guess[2][4] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][4] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][4] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][4] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][4] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][4] == 6)
+				guess011.setBackground(Color.pink);
+	
+			JButton guess043 = new JButton("");
+			add(guess043);
+			guess043.setBounds(180, 60, 40, 15);
+			
+		
+			while (guess[3][4] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][4] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][4] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][4] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][4] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][4] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess044 = new JButton("");
+			add(guess044);
+			guess044.setBounds(220, 60, 40, 15);
+			
+			
+			while (guess[4][4] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][4] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][4] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][4] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][4] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][4] == 6)
+				guess011.setBackground(Color.pink);
+					
+			JButton indicator043 = new JButton("");
+			add(indicator043);
+			indicator043.setBounds(280, 60, 40, 15);
+			while (response[3][2] == 1)
+				indicator043.setBackground(Color.white);
+			while (response[3][2] == 2)
+				indicator043.setBackground(Color.black);
+			JButton indicator044 = new JButton("");
+			add(indicator044);
+			indicator044.setBounds(320, 60, 40, 15);
+			while (response[3][3] == 1)
+				indicator044.setBackground(Color.white);
+			while (response[3][3] == 2)
+				indicator044.setBackground(Color.black);
+			
+			JButton indicator051 = new JButton("");
+			add(indicator051);
+			indicator051.setBounds(0, 80, 40, 15);
+			while (response[4][0] == 1)
+				indicator051.setBackground(Color.white);
+			while (response[4][0] == 2)
+				indicator051.setBackground(Color.black);
+			JButton indicator052 = new JButton("");
+			add(indicator052);
+			indicator052.setBounds(40, 80, 40, 15);
+			while (response[4][1] == 1)
+				indicator052.setBackground(Color.white);
+			while (response[4][1] == 2)
+				indicator052.setBackground(Color.black);
+			
+			JButton guess051 = new JButton("");
+			add(guess051);
+			guess051.setBounds(100, 80, 40, 15);
+			
+		
+			while (guess[1][5] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][5] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][5] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][5] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][5] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][5] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess052 = new JButton("");
+			add(guess052);
+			guess052.setBounds(140, 80, 40, 15);
+			
+		
+			while (guess[2][5] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][5] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][5] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][5] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][5] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][5] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess053 = new JButton("");
+			add(guess053);
+			guess053.setBounds(180, 80, 40, 15);
+			
+		
+			while (guess[3][5] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][5] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][5] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][5] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][5] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][5] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess054 = new JButton("");
+			add(guess054);
+			guess054.setBounds(220, 80, 40, 15);
+			
+		
+			while (guess[4][5] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][5] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][5] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][5] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][5] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][5] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton indicator053 = new JButton("");
+			add(indicator053);
+			indicator053.setBounds(280, 80, 40, 15);
+			while (response[4][2] == 1)
+				indicator053.setBackground(Color.white);
+			while (response[4][2] == 2)
+				indicator053.setBackground(Color.black);
+			JButton indicator054 = new JButton("");
+			add(indicator054);
+			indicator054.setBounds(320, 80, 40, 15);
+			while (response[4][3] == 1)
+				indicator054.setBackground(Color.white);
+			while (response[4][3] == 2)
+				indicator054.setBackground(Color.black);
+			
+			JButton indicator061 = new JButton("");
+			add(indicator061);
+			indicator061.setBounds(0, 100, 40, 15);
+			while (response[5][0] == 1)
+				indicator061.setBackground(Color.white);
+			while (response[5][0] == 2)
+				indicator061.setBackground(Color.black);
+			JButton indicator062 = new JButton("");
+			add(indicator062);
+			indicator062.setBounds(40, 100, 40, 15);
+			while (response[5][1] == 1)
+				indicator062.setBackground(Color.white);
+			while (response[5][1] == 2)
+				indicator062.setBackground(Color.black);
+			
+			JButton guess061 = new JButton("");
+			add(guess061);
+			guess061.setBounds(100, 100, 40, 15);
+			
+			
+			while (guess[1][6] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][6] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][6] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][6] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][6] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][6] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess062 = new JButton("");
+			add(guess062);
+			guess062.setBounds(140, 100, 40, 15);
+			
+		
+			while (guess[2][6] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][6] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][6] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][6] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][6] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][6] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess063 = new JButton("");
+			add(guess063);
+			guess063.setBounds(180, 100, 40, 15);
+			
+			
+			while (guess[3][6] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][6] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][6] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][6] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][6] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][6] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess064 = new JButton("");
+			add(guess064);
+			guess064.setBounds(220, 100, 40, 15);
+			
+		
+			while (guess[4][6] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][6] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][6] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][6] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][6] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][6] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton indicator063 = new JButton("");
+			add(indicator063);
+			indicator063.setBounds(280, 100, 40, 15);
+			while (response[5][2] == 1)
+				indicator063.setBackground(Color.white);
+			while (response[5][2] == 2)
+				indicator063.setBackground(Color.black);
+			JButton indicator064 = new JButton("");
+			add(indicator064);
+			indicator064.setBounds(320, 100, 40, 15);
+			while (response[5][3] == 1)
+				indicator064.setBackground(Color.white);
+			while (response[5][3] == 2)
+				indicator064.setBackground(Color.black);
+			
+			JButton indicator071 = new JButton("");
+			add(indicator071);
+			indicator071.setBounds(0, 120, 40, 15);
+			while (response[6][0] == 1)
+				indicator071.setBackground(Color.white);
+			while (response[6][0] == 2)
+				indicator071.setBackground(Color.black);
+			JButton indicator072 = new JButton("");
+			add(indicator072);
+			indicator072.setBounds(40, 120, 40, 15);
+			while (response[6][1] == 1)
+				indicator072.setBackground(Color.white);
+			while (response[6][1] == 2)
+				indicator072.setBackground(Color.black);
+			
+			JButton guess071 = new JButton("");
+			add(guess071);
+			guess071.setBounds(100, 120, 40, 15);
+			
+		
+			while (guess[1][7] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][7] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][7] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][7] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][7] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][7] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess072 = new JButton("");
+			add(guess072);
+			guess072.setBounds(140, 120, 40, 15);
+	
+			while (guess[2][7] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][7] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][7] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][7] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][7] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][7] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess073 = new JButton("");
+			add(guess073);
+			guess073.setBounds(180, 120, 40, 15);
+			
+	
+			while (guess[3][7] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][1] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][7] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][7] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][7] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][7] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess074 = new JButton("");
+			add(guess074);
+			guess074.setBounds(220, 120, 40, 15);
+			
+		
+			while (guess[4][7] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][7] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][7] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][7] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][7] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][7] == 6)
+				guess011.setBackground(Color.pink);
+	
+			JButton indicator073 = new JButton("");
+			add(indicator073);
+			indicator073.setBounds(280, 120, 40, 15);
+			while (response[6][2] == 1)
+				indicator073.setBackground(Color.white);
+			while (response[6][2] == 2)
+				indicator073.setBackground(Color.black);
+			JButton indicator074 = new JButton("");
+			add(indicator074);
+			indicator074.setBounds(320, 120, 40, 15);
+			while (response[6][3] == 1)
+				indicator074.setBackground(Color.white);
+			while (response[6][3] == 2)
+				indicator074.setBackground(Color.black);
+			
+			JButton indicator081 = new JButton("");
+			add(indicator081);
+			indicator081.setBounds(0, 140, 40, 15);
+			while (response[7][0] == 1)
+				indicator081.setBackground(Color.white);
+			while (response[7][0] == 2)
+				indicator081.setBackground(Color.black);
+			JButton indicator082 = new JButton("");
+			add(indicator082);
+			indicator082.setBounds(40, 140, 40, 15);
+			while (response[7][1] == 1)
+				indicator082.setBackground(Color.white);
+			while (response[7][1] == 2)
+				indicator082.setBackground(Color.black);
+			
+			JButton guess081 = new JButton("");
+			add(guess081);
+			guess081.setBounds(100, 140, 40, 15);
+			
+
+			while (guess[1][8] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][8] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][8] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][8] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][8] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][8] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess082 = new JButton("");
+			add(guess082);
+			guess082.setBounds(140, 140, 40, 15);
+			
+			
+			while (guess[2][8] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][8] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][8] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][8] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][8] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][8] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess083 = new JButton("");
+			add(guess083);
+			guess083.setBounds(180, 140, 40, 15);
+			
+			
+			while (guess[3][8] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][8] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][8] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][8] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][8] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][8] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess084 = new JButton("");
+			add(guess084);
+			guess084.setBounds(220, 140, 40, 15);
+			
+			
+			while (guess[4][8] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][8] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][8] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][8] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][8] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][8] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton indicator083 = new JButton("");
+			add(indicator083);
+			indicator083.setBounds(280, 140, 40, 15);
+			while (response[7][2] == 1)
+				indicator083.setBackground(Color.white);
+			while (response[7][2] == 2)
+				indicator083.setBackground(Color.black);
+			JButton indicator084 = new JButton("");
+			add(indicator084);
+			indicator084.setBounds(320, 140, 40, 15);
+			while (response[7][3] == 1)
+				indicator084.setBackground(Color.white);
+			while (response[7][3] == 2)
+				indicator084.setBackground(Color.black);
+			
+			JButton indicator091 = new JButton("");
+			add(indicator091);
+			indicator091.setBounds(0, 160, 40, 15);
+			while (response[8][0] == 1)
+				indicator091.setBackground(Color.white);
+			while (response[8][0] == 2)
+				indicator091.setBackground(Color.black);
+			JButton indicator092 = new JButton("");
+			add(indicator092);
+			indicator092.setBounds(40, 160, 40, 15);
+			while (response[8][1] == 1)
+				indicator092.setBackground(Color.white);
+			while (response[8][1] == 2)
+				indicator092.setBackground(Color.black);
+			
+			JButton guess091 = new JButton("");
+			add(guess091);
+			guess091.setBounds(100, 160, 40, 15);
+			
+		
+			while (guess[1][9] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][9] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][9] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][9] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][9] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][9] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess092 = new JButton("");
+			add(guess092);
+			guess092.setBounds(140, 160, 40, 15);
+			
+		
+			while (guess[2][9] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][9] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][9] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][9] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][9] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][9] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess093 = new JButton("");
+			add(guess093);
+			guess093.setBounds(180, 160, 40, 15);
+			
+			
+			while (guess[3][9] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][9] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][9] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][9] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][9] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][9] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton guess094 = new JButton("");
+			add(guess094);
+			guess094.setBounds(220, 160, 40, 15);
+			
+			
+			while (guess[4][9] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][9] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][9] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][9] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][9] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][9] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton indicator093 = new JButton("");
+			add(indicator093);
+			indicator093.setBounds(280, 160, 40, 15);
+			while (response[8][2] == 1)
+				indicator093.setBackground(Color.white);
+			while (response[8][2] == 2)
+				indicator093.setBackground(Color.black);
+			JButton indicator094 = new JButton("");
+			add(indicator094);
+			indicator094.setBounds(320, 160, 40, 15);
+			while (response[8][3] == 1)
+				indicator094.setBackground(Color.white);
+			while (response[8][3] == 2)
+				indicator094.setBackground(Color.black);
+			
+			JButton indicator101 = new JButton("");
+			add(indicator101);
+			indicator101.setBounds(0, 180, 40, 15);
+			while (response[9][0] == 1)
+				indicator101.setBackground(Color.white);
+			while (response[9][0] == 2)
+				indicator101.setBackground(Color.black);
+			JButton indicator102 = new JButton("");
+			add(indicator102);
+			indicator102.setBounds(40, 180, 40, 15);
+			while (response[9][1] == 1)
+				indicator102.setBackground(Color.white);
+			while (response[9][1] == 2)
+				indicator102.setBackground(Color.black);
+			
+			JButton guess101 = new JButton("");
+			add(guess101);
+			guess101.setBounds(100, 180, 40, 15);
+			
+		
+			while (guess[1][10] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][10] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][10] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][10] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][10] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][10] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess102 = new JButton("");
+			add(guess102);
+			guess102.setBounds(140, 180, 40, 15);
+			
+		
+			while (guess[2][10] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][10] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][10] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][10] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][10] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][10] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess103 = new JButton("");
+			add(guess103);
+			guess103.setBounds(180, 180, 40, 15);
+			
+		
+			while (guess[3][10] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][10] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][10] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][10] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][10] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][10] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess104 = new JButton("");
+			add(guess104);
+			guess104.setBounds(220, 180, 40, 15);
+			
+		
+			while (guess[4][10] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][10] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][10] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][10] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][10] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][10] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton indicator103 = new JButton("");
+			add(indicator103);
+			indicator103.setBounds(280, 180, 40, 15);
+			while (response[9][2] == 1)
+				indicator103.setBackground(Color.white);
+			while (response[9][2] == 2)
+				indicator103.setBackground(Color.black);
+			JButton indicator104 = new JButton("");
+			add(indicator104);
+			indicator104.setBounds(320, 180, 40, 15);
+			while (response[9][3] == 1)
+				indicator104.setBackground(Color.white);
+			while (response[9][3] == 2)
+				indicator104.setBackground(Color.black);
+			
+			JButton indicator111 = new JButton("");
+			add(indicator111);
+			indicator111.setBounds(0, 200, 40, 15);
+			while (response[10][0] == 1)
+				indicator111.setBackground(Color.white);
+			while (response[10][0] == 2)
+				indicator111.setBackground(Color.black);
+			JButton indicator112 = new JButton("");
+			add(indicator112);
+			indicator112.setBounds(40, 200, 40, 15);
+			while (response[10][1] == 1)
+				indicator112.setBackground(Color.white);
+			while (response[10][1] == 2)
+				indicator112.setBackground(Color.black);
+			
+			JButton guess111 = new JButton("");
+			add(guess111);
+			guess111.setBounds(100, 200, 40, 15);
+			
+		
+			while (guess[1][11] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][11] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][11] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][11] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][11] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][11] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess112 = new JButton("");
+			add(guess112);
+			guess112.setBounds(140, 200, 40, 15);
+			
+		
+			while (guess[2][11] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][11] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][11] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][11] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][11] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][11] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess113 = new JButton("");
+			add(guess113);
+			guess113.setBounds(180, 200, 40, 15);
+			
+			
+			while (guess[3][11] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][11] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][11] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][11] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][11] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][11] == 6)
+				guess011.setBackground(Color.pink);
+	
+			JButton guess114 = new JButton("");
+			add(guess114);
+			guess114.setBounds(220, 200, 40, 15);
+			
+	
+			while (guess[4][11] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][11] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][11] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][11] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][11] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][11] == 6)
+				guess011.setBackground(Color.pink);
+	
+			JButton indicator113 = new JButton("");
+			add(indicator113);
+			indicator113.setBounds(280, 200, 40, 15);
+			while (response[10][2] == 1)
+				indicator113.setBackground(Color.white);
+			while (response[10][2] == 2)
+				indicator113.setBackground(Color.black);
+			JButton indicator114 = new JButton("");
+			add(indicator114);
+			indicator114.setBounds(320, 200, 40, 15);
+			while (response[10][3] == 1)
+				indicator114.setBackground(Color.white);
+			while (response[10][3] == 2)
+				indicator114.setBackground(Color.black);
+			
+			JButton indicator121 = new JButton("");
+			add(indicator121);
+			indicator121.setBounds(0, 220, 40, 15);
+			while (response[11][0] == 1)
+				indicator121.setBackground(Color.white);
+			while (response[11][0] == 2)
+				indicator121.setBackground(Color.black);
+			JButton indicator122 = new JButton("");
+			add(indicator122);
+			indicator122.setBounds(40, 220, 40, 15);
+			while (response[11][1] == 1)
+				indicator122.setBackground(Color.white);
+			while (response[11][1] == 2)
+				indicator122.setBackground(Color.black);
+			
+			JButton guess121 = new JButton("");
+			add(guess121);
+			guess121.setBounds(100, 220, 40, 15);
+			
+	
+			while (guess[1][12] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[1][12] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[1][12] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[1][12] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[1][12] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[1][12] == 6)
+				guess011.setBackground(Color.pink);
+			
+			JButton guess122 = new JButton("");
+			add(guess122);
+			guess122.setBounds(140, 220, 40, 15);
+			
+		
+			while (guess[2][12] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[2][12] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[2][12] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[2][12] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[2][12] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[2][12] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess123 = new JButton("");
+			add(guess123);
+			guess123.setBounds(180, 220, 40, 15);
+			
+		
+			while (guess[3][12] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[3][12] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[3][12] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[3][12] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[3][12] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[3][12] == 6)
+				guess011.setBackground(Color.pink);
+		
+			JButton guess124 = new JButton("");
+			add(guess124);
+			guess124.setBounds(220, 220, 40, 15);
+			
+
+			while (guess[4][12] == 1)
+				guess011.setBackground(Color.red);
+			while (guess[4][12] == 2)
+				guess011.setBackground(Color.orange);
+			while (guess[4][12] == 3)
+				guess011.setBackground(Color.yellow);
+			while (guess[4][12] == 4)
+				guess011.setBackground(Color.green);
+			while (guess[4][12] == 5)
+				guess011.setBackground(Color.blue);
+			while (guess[4][12] == 6)
+				guess011.setBackground(Color.pink);
+				
+			JButton indicator123 = new JButton("");
+			add(indicator123);
+			indicator123.setBounds(280, 220, 40, 15);
+			while (response[11][2] == 1)
+				indicator123.setBackground(Color.white);
+			while (response[11][2] == 2)
+				indicator123.setBackground(Color.black);
+			JButton indicator124 = new JButton("");
+			add(indicator124);
+			indicator124.setBounds(320, 220, 40, 15);
+			while (response[11][3] == 1)
+				indicator124.setBackground(Color.white);
+			while (response[11][3] == 2)
+				indicator124.setBackground(Color.black);
+			
+			
+			//drop down menus
+			JComboBox choice1 = new JComboBox(coloursString);
+			add(choice1);
+			choice1.setBounds(20, 245, 80, 40);
+			JComboBox choice2 = new JComboBox(coloursString);
+			add(choice2);
+			choice2.setBounds(100, 245, 80, 40);
+			JComboBox choice3 = new JComboBox(coloursString);
+			add(choice3);
+			choice3.setBounds(180, 245, 80, 40);
+			JComboBox choice4 = new JComboBox(coloursString);
+			add(choice4);
+			choice4.setBounds(260, 245, 80, 40);
+	
+			//submit button
+			JButton submit = new JButton("Submit");
+			add(submit);
+			submit.setBounds(20, 290, 320, 20);
+							attempt[0] = choice1.getSelectedIndex();
+							attempt[1] = choice2.getSelectedIndex();
+							attempt[2] = choice3.getSelectedIndex();
+							attempt[3] = choice4.getSelectedIndex();
+			
+		//creates listener for submit button	
+			submit.addActionListener(new ButtonListener());
+		}		
+		private class ButtonListener implements ActionListener
+		{
+						public void actionPerformed(ActionEvent event) {
+
+							response = BoardPanel.errorcheck(response,attempt,code,i);
+							
+							i++;
+						}
+		};
+		
+	
+	}
+
+	public static int[][] errorcheck(int[][] response, int[]attempt,int[]code,int i) {
+		for (int k=0;k<=code.length;k++)
+		{
+			if (attempt[k]==code[k])//test for exact match
+			{
+				response[k][i] = 2;
+			}
+			else
+			{
+				for (int l=0;l<=attempt.length;l++)//rotates through the other positions of the guess
+				{
+					if (attempt[k]==code[l])//test for non-exact match
+					{
+						response[k][i] = 1;
+					}
+				}	
+			}
+		}
+		return response;
+		
+	}
+}
