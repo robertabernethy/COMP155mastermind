@@ -3,38 +3,43 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
+//creates the class BoardPanel for the game mastermind
 public class BoardPanel extends JPanel{
-	public int[] code = new int[4];
-	public int[][] response = new int[12][4];
-	public int[] attempt = new int[4];
-	public int i = 1;
-	public int[][] guess = new int [5][13];	
+	
+	public int[] code = new int[4];//array for storing the random code answer
+	public int[][] response = new int[12][4];//array for storing the games response to answers
+	public int[] attempt = new int[4];//array for storing the users answer input
+	public int i = 1;//place holder for loop
+	public int[][] guess = new int [5][13];	//array for storing guess
 	
 	
 	
 	public static void main(String[] args) {
+		//creates new instance of the game and runs it
 		BoardPanel board = new BoardPanel();
 		JFrame frame = board.new boardframe();
 		frame.show();
-		// I have no idea what I'm doing here but it kinda works
+		
 	}
 
 	class boardframe extends JFrame {
+		
 		boardframe() {
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			//creates the frame of the game in BoardPanel, for showing buttons
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//specifies when to close game
 			setLayout(null);
-			setSize(376, 360);	
-			setTitle("Mastermind");
-			getContentPane().add(new ButtonPanel());
-			//setting the size title and other stuff
+			setSize(376, 360);	//specifies the size of the frame
+			setTitle("Mastermind");//name of the game
+			getContentPane().add(new ButtonPanel());//gets the location names etc for the buttons
+			
 		}
 	}
 
 	class ButtonPanel extends JPanel
 	{
+		//creates buttons for the frame
 
-
-		
+		//class for generating the answer needed to win the game
 		class randomCode {
 			Random randomGen = new Random();
 			{
@@ -52,19 +57,24 @@ public class BoardPanel extends JPanel{
 		BoardPanel startGame = new BoardPanel();
 
 		ButtonPanel() {
-			String[] coloursString = { "----", "red", "orange", "yellow", "green", "blue", "pink"};
+			//creates the button panel and sets the size
 			setSize(376, 360);
 			setLayout(null);
-			//put the colours in an array for the drop down menus to grab
 			
-			//all these buttons :O
-			JButton indicator011 = new JButton("");
+			
+			//creates indicator button to indicate whether guess is correct or not
+			//sets indicator buttons location in button panel
+			//no actionlistener used for display only
+			JButton indicator011 = new JButton("");//specifies correctness of guess011
 			add(indicator011);
 			indicator011.setBounds(0, 0, 40, 15);
-			while (response[0][0] == 1)
-				indicator011.setBackground(Color.white);
+			while (response[0][0] == 1)//sets the indicators color based on correctness
+				indicator011.setBackground(Color.white);//white = correct but wrong position
 			while (response[0][0] == 2)
-				indicator011.setBackground(Color.black);
+				indicator011.setBackground(Color.black);//black = correct right position
+			
+			// creates second indicator button, same purpose as first
+			//specifies correctness of guess012
 			JButton indicator012 = new JButton("");
 			add(indicator012);
 			indicator012.setBounds(40, 0, 40, 15);
@@ -73,9 +83,14 @@ public class BoardPanel extends JPanel{
 			while (response[0][1] == 2)
 				indicator012.setBackground(Color.black);
 			
+			//creates button to display guess color of user
+			//sets buttons position in button panel
+			//no actionlistener, used for display only
 			JButton guess011 = new JButton("");
 			add(guess011);
 			guess011.setBounds(100, 0, 40, 15);
+			//indicates what color to change button to
+			//dependent on users input color
 			while (guess[1][1] == 1)
 				guess011.setBackground(Color.red);
 			while (guess[1][1] == 2)
@@ -89,6 +104,8 @@ public class BoardPanel extends JPanel{
 			while (guess[1][1] == 6)
 				guess011.setBackground(Color.pink);
 			
+			//creates second guess display and sets position
+			//same purpose as first
 			JButton guess012 = new JButton("");
 			add(guess012);
 			guess012.setBounds(140, 0, 40, 15);
@@ -106,6 +123,8 @@ public class BoardPanel extends JPanel{
 			while (guess[2][1] == 6)
 				guess011.setBackground(Color.pink);
 			
+			//third guess display
+			//same purpose as first
 			JButton guess013 = new JButton("");
 			add(guess013);
 			guess013.setBounds(180, 0, 40, 15);
@@ -123,6 +142,8 @@ public class BoardPanel extends JPanel{
 			while (guess[3][1] == 6)
 				guess011.setBackground(Color.pink);
 			
+			//fourth guess display
+			//same purpose as first
 			JButton guess014 = new JButton("");
 			add(guess014);
 			guess014.setBounds(220, 0, 40, 15);
@@ -140,6 +161,7 @@ public class BoardPanel extends JPanel{
 			while (guess[4][1] == 6)
 				guess011.setBackground(Color.pink);
 			
+			//specifies correctness of guess013
 			JButton indicator013 = new JButton("");
 			add(indicator013);
 			indicator013.setBounds(280, 0, 40, 15);
@@ -147,6 +169,8 @@ public class BoardPanel extends JPanel{
 				indicator013.setBackground(Color.white);
 			while (response[0][2] == 2)
 				indicator013.setBackground(Color.black);
+			
+			//specifies correctness of guess014
 			JButton indicator014 = new JButton("");
 			add(indicator014);
 			indicator014.setBounds(320, 0, 40, 15);
@@ -155,6 +179,8 @@ public class BoardPanel extends JPanel{
 			while (response[0][3] == 2)
 				indicator014.setBackground(Color.black);
 			
+			//second row
+			//specifies correctness of guess021
 			JButton indicator021 = new JButton("");
 			add(indicator021);
 			indicator021.setBounds(0, 20, 40, 15);
@@ -162,6 +188,8 @@ public class BoardPanel extends JPanel{
 				indicator021.setBackground(Color.white);
 			while (response[1][0] == 2)
 				indicator021.setBackground(Color.black);
+			
+			//specifies correctness of guess022
 			JButton indicator022 = new JButton("");
 			add(indicator022);
 			indicator022.setBounds(40, 20, 40, 15);
@@ -170,6 +198,7 @@ public class BoardPanel extends JPanel{
 			while (response[1][1] == 2)
 				indicator022.setBackground(Color.black);
 			
+			//creates button for second set of guess display
 			JButton guess021 = new JButton("");
 			add(guess021);
 			guess021.setBounds(100, 20, 40, 15);
@@ -187,6 +216,7 @@ public class BoardPanel extends JPanel{
 			while (guess[1][2] == 6)
 				guess011.setBackground(Color.pink);
 			
+			//same purpose as guess021
 			JButton guess022 = new JButton("");
 			add(guess022);
 			guess022.setBounds(140, 20, 40, 15);
@@ -204,6 +234,7 @@ public class BoardPanel extends JPanel{
 			while (guess[2][2] == 6)
 				guess011.setBackground(Color.pink);
 			
+			//"
 			JButton guess023 = new JButton("");
 			add(guess023);
 			guess023.setBounds(180, 20, 40, 15);
@@ -221,6 +252,7 @@ public class BoardPanel extends JPanel{
 			while (guess[3][2] == 6)
 				guess011.setBackground(Color.pink);
 			
+			//"
 			JButton guess024 = new JButton("");
 			add(guess024);
 			guess024.setBounds(220, 20, 40, 15);
@@ -238,6 +270,7 @@ public class BoardPanel extends JPanel{
 			while (guess[4][2] == 6)
 				guess011.setBackground(Color.pink);
 			
+			//displays correctness for guess023
 			JButton indicator023 = new JButton("");
 			add(indicator023);
 			indicator023.setBounds(280, 20, 40, 15);
@@ -245,6 +278,8 @@ public class BoardPanel extends JPanel{
 				indicator023.setBackground(Color.white);
 			while (response[1][2] == 2)
 				indicator023.setBackground(Color.black);
+			
+			//displays correctness for guess024
 			JButton indicator024 = new JButton("");
 			add(indicator024);
 			indicator024.setBounds(320, 20, 40, 15);
@@ -253,6 +288,7 @@ public class BoardPanel extends JPanel{
 			while (response[1][3] == 2)
 				indicator024.setBackground(Color.black);
 			
+			//starts next row for third set of guesses
 			JButton indicator031 = new JButton("");
 			add(indicator031);
 			indicator031.setBounds(0, 40, 40, 15);
@@ -260,6 +296,7 @@ public class BoardPanel extends JPanel{
 				indicator031.setBackground(Color.white);
 			while (response[2][0] == 2)
 				indicator031.setBackground(Color.black);
+			
 			JButton indicator032 = new JButton("");
 			add(indicator032);
 			indicator032.setBounds(40, 40, 40, 15);
@@ -353,6 +390,7 @@ public class BoardPanel extends JPanel{
 			while (response[2][3] == 2)
 				indicator034.setBackground(Color.black);
 			
+			//fourth row for fourth set of guesses
 			JButton indicator041 = new JButton("");
 			add(indicator041);
 			indicator041.setBounds(0, 60, 40, 15);
@@ -447,6 +485,7 @@ public class BoardPanel extends JPanel{
 				indicator043.setBackground(Color.white);
 			while (response[3][2] == 2)
 				indicator043.setBackground(Color.black);
+			
 			JButton indicator044 = new JButton("");
 			add(indicator044);
 			indicator044.setBounds(320, 60, 40, 15);
@@ -455,6 +494,7 @@ public class BoardPanel extends JPanel{
 			while (response[3][3] == 2)
 				indicator044.setBackground(Color.black);
 			
+			//fifth row for fifth set of guesses
 			JButton indicator051 = new JButton("");
 			add(indicator051);
 			indicator051.setBounds(0, 80, 40, 15);
@@ -462,6 +502,7 @@ public class BoardPanel extends JPanel{
 				indicator051.setBackground(Color.white);
 			while (response[4][0] == 2)
 				indicator051.setBackground(Color.black);
+			
 			JButton indicator052 = new JButton("");
 			add(indicator052);
 			indicator052.setBounds(40, 80, 40, 15);
@@ -549,6 +590,7 @@ public class BoardPanel extends JPanel{
 				indicator053.setBackground(Color.white);
 			while (response[4][2] == 2)
 				indicator053.setBackground(Color.black);
+			
 			JButton indicator054 = new JButton("");
 			add(indicator054);
 			indicator054.setBounds(320, 80, 40, 15);
@@ -557,6 +599,7 @@ public class BoardPanel extends JPanel{
 			while (response[4][3] == 2)
 				indicator054.setBackground(Color.black);
 			
+			//sixth row for sixth set of guesses
 			JButton indicator061 = new JButton("");
 			add(indicator061);
 			indicator061.setBounds(0, 100, 40, 15);
@@ -564,6 +607,7 @@ public class BoardPanel extends JPanel{
 				indicator061.setBackground(Color.white);
 			while (response[5][0] == 2)
 				indicator061.setBackground(Color.black);
+			
 			JButton indicator062 = new JButton("");
 			add(indicator062);
 			indicator062.setBounds(40, 100, 40, 15);
@@ -651,6 +695,7 @@ public class BoardPanel extends JPanel{
 				indicator063.setBackground(Color.white);
 			while (response[5][2] == 2)
 				indicator063.setBackground(Color.black);
+			
 			JButton indicator064 = new JButton("");
 			add(indicator064);
 			indicator064.setBounds(320, 100, 40, 15);
@@ -659,6 +704,7 @@ public class BoardPanel extends JPanel{
 			while (response[5][3] == 2)
 				indicator064.setBackground(Color.black);
 			
+			//seventh row for seventh set of guesses
 			JButton indicator071 = new JButton("");
 			add(indicator071);
 			indicator071.setBounds(0, 120, 40, 15);
@@ -666,6 +712,7 @@ public class BoardPanel extends JPanel{
 				indicator071.setBackground(Color.white);
 			while (response[6][0] == 2)
 				indicator071.setBackground(Color.black);
+			
 			JButton indicator072 = new JButton("");
 			add(indicator072);
 			indicator072.setBounds(40, 120, 40, 15);
@@ -752,6 +799,7 @@ public class BoardPanel extends JPanel{
 				indicator073.setBackground(Color.white);
 			while (response[6][2] == 2)
 				indicator073.setBackground(Color.black);
+			
 			JButton indicator074 = new JButton("");
 			add(indicator074);
 			indicator074.setBounds(320, 120, 40, 15);
@@ -760,6 +808,7 @@ public class BoardPanel extends JPanel{
 			while (response[6][3] == 2)
 				indicator074.setBackground(Color.black);
 			
+			//eighth row for eighth set of guesses
 			JButton indicator081 = new JButton("");
 			add(indicator081);
 			indicator081.setBounds(0, 140, 40, 15);
@@ -767,6 +816,7 @@ public class BoardPanel extends JPanel{
 				indicator081.setBackground(Color.white);
 			while (response[7][0] == 2)
 				indicator081.setBackground(Color.black);
+			
 			JButton indicator082 = new JButton("");
 			add(indicator082);
 			indicator082.setBounds(40, 140, 40, 15);
@@ -854,6 +904,7 @@ public class BoardPanel extends JPanel{
 				indicator083.setBackground(Color.white);
 			while (response[7][2] == 2)
 				indicator083.setBackground(Color.black);
+			
 			JButton indicator084 = new JButton("");
 			add(indicator084);
 			indicator084.setBounds(320, 140, 40, 15);
@@ -862,6 +913,7 @@ public class BoardPanel extends JPanel{
 			while (response[7][3] == 2)
 				indicator084.setBackground(Color.black);
 			
+			//ninth row for ninth set of guesses
 			JButton indicator091 = new JButton("");
 			add(indicator091);
 			indicator091.setBounds(0, 160, 40, 15);
@@ -869,6 +921,7 @@ public class BoardPanel extends JPanel{
 				indicator091.setBackground(Color.white);
 			while (response[8][0] == 2)
 				indicator091.setBackground(Color.black);
+			
 			JButton indicator092 = new JButton("");
 			add(indicator092);
 			indicator092.setBounds(40, 160, 40, 15);
@@ -956,6 +1009,7 @@ public class BoardPanel extends JPanel{
 				indicator093.setBackground(Color.white);
 			while (response[8][2] == 2)
 				indicator093.setBackground(Color.black);
+			
 			JButton indicator094 = new JButton("");
 			add(indicator094);
 			indicator094.setBounds(320, 160, 40, 15);
@@ -964,6 +1018,7 @@ public class BoardPanel extends JPanel{
 			while (response[8][3] == 2)
 				indicator094.setBackground(Color.black);
 			
+			//tenth row for tenth set of guesses
 			JButton indicator101 = new JButton("");
 			add(indicator101);
 			indicator101.setBounds(0, 180, 40, 15);
@@ -971,6 +1026,7 @@ public class BoardPanel extends JPanel{
 				indicator101.setBackground(Color.white);
 			while (response[9][0] == 2)
 				indicator101.setBackground(Color.black);
+			
 			JButton indicator102 = new JButton("");
 			add(indicator102);
 			indicator102.setBounds(40, 180, 40, 15);
@@ -1058,6 +1114,7 @@ public class BoardPanel extends JPanel{
 				indicator103.setBackground(Color.white);
 			while (response[9][2] == 2)
 				indicator103.setBackground(Color.black);
+			
 			JButton indicator104 = new JButton("");
 			add(indicator104);
 			indicator104.setBounds(320, 180, 40, 15);
@@ -1066,6 +1123,7 @@ public class BoardPanel extends JPanel{
 			while (response[9][3] == 2)
 				indicator104.setBackground(Color.black);
 			
+			//eleventh row for eleventh set of guesses
 			JButton indicator111 = new JButton("");
 			add(indicator111);
 			indicator111.setBounds(0, 200, 40, 15);
@@ -1073,6 +1131,7 @@ public class BoardPanel extends JPanel{
 				indicator111.setBackground(Color.white);
 			while (response[10][0] == 2)
 				indicator111.setBackground(Color.black);
+			
 			JButton indicator112 = new JButton("");
 			add(indicator112);
 			indicator112.setBounds(40, 200, 40, 15);
@@ -1160,6 +1219,7 @@ public class BoardPanel extends JPanel{
 				indicator113.setBackground(Color.white);
 			while (response[10][2] == 2)
 				indicator113.setBackground(Color.black);
+			
 			JButton indicator114 = new JButton("");
 			add(indicator114);
 			indicator114.setBounds(320, 200, 40, 15);
@@ -1168,6 +1228,7 @@ public class BoardPanel extends JPanel{
 			while (response[10][3] == 2)
 				indicator114.setBackground(Color.black);
 			
+			//twelfth row for twelfth set of guesses
 			JButton indicator121 = new JButton("");
 			add(indicator121);
 			indicator121.setBounds(0, 220, 40, 15);
@@ -1175,6 +1236,7 @@ public class BoardPanel extends JPanel{
 				indicator121.setBackground(Color.white);
 			while (response[11][0] == 2)
 				indicator121.setBackground(Color.black);
+			
 			JButton indicator122 = new JButton("");
 			add(indicator122);
 			indicator122.setBounds(40, 220, 40, 15);
@@ -1262,6 +1324,7 @@ public class BoardPanel extends JPanel{
 				indicator123.setBackground(Color.white);
 			while (response[11][2] == 2)
 				indicator123.setBackground(Color.black);
+			
 			JButton indicator124 = new JButton("");
 			add(indicator124);
 			indicator124.setBounds(320, 220, 40, 15);
@@ -1271,28 +1334,54 @@ public class BoardPanel extends JPanel{
 				indicator124.setBackground(Color.black);
 			
 			
-			//drop down menus
-			JComboBox choice1 = new JComboBox(coloursString);
+			//buttons for user to choose color
+			//used for answer testing
+			//(I obviously haven't created any of the listeners yet)
+			JButton choice1 = new JButton("");//creates red button
+			choice1.setBackground(Color.red);
 			add(choice1);
 			choice1.setBounds(20, 245, 80, 40);
-			JComboBox choice2 = new JComboBox(coloursString);
+			choice1.addActionListener(new choice1Listener);//listener for red button
+			
+			JButton choice2 = new JButton("");//creates orange button
+			choice2.setBackground(Color.orange);
 			add(choice2);
 			choice2.setBounds(100, 245, 80, 40);
-			JComboBox choice3 = new JComboBox(coloursString);
+			choice2.addActionListener(new choice2Listener);//listener for orange button
+
+			JButton choice3 = new JButton("");//creates yellow button
+			choice3.setBackground(Color.yellow);
 			add(choice3);
 			choice3.setBounds(180, 245, 80, 40);
-			JComboBox choice4 = new JComboBox(coloursString);
+			choice3.addActionListener(new choice3Listener);//listener for yellow button
+			
+			JButton choice4 = new JButton("");//creates green button
+			choice4.setBackground(Color.green);
 			add(choice4);
 			choice4.setBounds(260, 245, 80, 40);
+			choice4.addActionListener(new choice4Listener);//listener for green button
+			
+			JButton choice5 = new JButton("");//creates blue button
+			choice5.setBackground(Color.blue);
+			add(choice5);
+			choice5.setBounds(55, 260, 80, 40);
+			choice5.addActionListener(new choice5Listener);//listener for blue button
+			
+			JButton choice6 = new JButton("");//creates pink button
+			choice6.setBackground(Color.pink);
+			add(choice6);
+			choice6.setBounds(140, 260, 80, 40);
+			choice6.addActionListener(new choice6Listener);//listener for pink button
 	
-			//submit button
+			//submit button(MAYBE DON'T NEED ? IF THE USER PRESSES A BUTTON OF COLOR IT COULD
+			//JUST SHOW UP ON THE COLORS CHOSEN? OR SUBMIT COULD BECOME LIKE... NEXT GUESS? FOR THE NEXT LINE
 			JButton submit = new JButton("Submit");
 			add(submit);
-			submit.setBounds(20, 290, 320, 20);
-							attempt[0] = choice1.getSelectedIndex();
-							attempt[1] = choice2.getSelectedIndex();
-							attempt[2] = choice3.getSelectedIndex();
-							attempt[3] = choice4.getSelectedIndex();
+			submit.setBounds(20, 300, 320, 20);
+							attempt[0] = 
+							attempt[1] = 
+							attempt[2] = 
+							attempt[3] = 
 			
 		//creates listener for submit button	
 			submit.addActionListener(new ButtonListener());
@@ -1331,4 +1420,4 @@ public class BoardPanel extends JPanel{
 		return response;
 		
 	}
-}
+}	
