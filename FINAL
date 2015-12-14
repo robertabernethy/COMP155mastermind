@@ -8,10 +8,10 @@ public class BoardPanel extends JPanel{
 	
 	public int[] code = new int[4];//array for storing the random code answer
 	public int[][] response = new int[12][4];//array for storing the games response to answers
-	public int[] attempt = new int[4];//array for storing the users answer input
+	public int[] attempt = new int[48];//array for storing the users answer input
 	public int i = 1;//place holder for loop
 	public int[][] guess = new int [5][13];	//array for storing guess
-	
+	public int j = 0;
 	
 	
 	public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class BoardPanel extends JPanel{
 			//creates the frame of the game in BoardPanel, for showing buttons
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//specifies when to close game
 			setLayout(null);
-			setSize(376, 360);	//specifies the size of the frame
+			setSize(376, 400);	//specifies the size of the frame
 			setTitle("Mastermind");//name of the game
 			getContentPane().add(new ButtonPanel());//gets the location names etc for the buttons
 			
@@ -1340,52 +1340,145 @@ public class BoardPanel extends JPanel{
 			JButton choice1 = new JButton("");//creates red button
 			choice1.setBackground(Color.red);
 			add(choice1);
-			choice1.setBounds(20, 245, 80, 40);
-			choice1.addActionListener(new choice1Listener);//listener for red button
+			choice1.setBounds(20, 245, 80, 15);
+			choice1.addActionListener(new choice1Listener());//listener for red button
 			
 			JButton choice2 = new JButton("");//creates orange button
 			choice2.setBackground(Color.orange);
 			add(choice2);
-			choice2.setBounds(100, 245, 80, 40);
-			choice2.addActionListener(new choice2Listener);//listener for orange button
+			choice2.setBounds(100, 245, 80, 15);
+			choice2.addActionListener(new choice2Listener());//listener for orange button
 
 			JButton choice3 = new JButton("");//creates yellow button
 			choice3.setBackground(Color.yellow);
 			add(choice3);
-			choice3.setBounds(180, 245, 80, 40);
-			choice3.addActionListener(new choice3Listener);//listener for yellow button
+			choice3.setBounds(180, 245, 80, 15);
+			choice3.addActionListener(new choice3Listener());//listener for yellow button
 			
 			JButton choice4 = new JButton("");//creates green button
 			choice4.setBackground(Color.green);
 			add(choice4);
-			choice4.setBounds(260, 245, 80, 40);
-			choice4.addActionListener(new choice4Listener);//listener for green button
+			choice4.setBounds(260, 245, 80, 15);
+			choice4.addActionListener(new choice4Listener());//listener for green button
 			
 			JButton choice5 = new JButton("");//creates blue button
 			choice5.setBackground(Color.blue);
 			add(choice5);
-			choice5.setBounds(55, 260, 80, 40);
-			choice5.addActionListener(new choice5Listener);//listener for blue button
+			choice5.setBounds(55, 260, 80, 15);
+			choice5.addActionListener(new choice5Listener());//listener for blue button
 			
 			JButton choice6 = new JButton("");//creates pink button
 			choice6.setBackground(Color.pink);
 			add(choice6);
-			choice6.setBounds(140, 260, 80, 40);
-			choice6.addActionListener(new choice6Listener);//listener for pink button
+			choice6.setBounds(210, 260, 80, 15);
+			choice6.addActionListener(new choice6Listener());//listener for pink button
 	
-			//submit button(MAYBE DON'T NEED ? IF THE USER PRESSES A BUTTON OF COLOR IT COULD
-			//JUST SHOW UP ON THE COLORS CHOSEN? OR SUBMIT COULD BECOME LIKE... NEXT GUESS? FOR THE NEXT LINE
+			//submit button
 			JButton submit = new JButton("Submit");
 			add(submit);
-			submit.setBounds(20, 300, 320, 20);
-							attempt[0] = 
-							attempt[1] = 
-							attempt[2] = 
-							attempt[3] = 
+			submit.setBounds(20, 320, 320, 20);
+
 			
 		//creates listener for submit button	
 			submit.addActionListener(new ButtonListener());
 		}		
+		
+		
+		//listener for choice1 button
+		//sets current attempt spot to 1 to specify red color
+		//increases position in attempt array
+		private class choice1Listener implements ActionListener
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				
+				
+				if (j <= 47)
+				{
+					attempt[j] = 1;
+					j++;
+				}
+			}
+		}
+		
+		//listener for choice2 button
+		//sets current attempt spot to 2 to specify orange color
+		//increases position in attempt array
+		private class choice2Listener implements ActionListener
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				
+				if (j <= 47)
+				{
+					attempt[j] = 2;
+					j++;
+				}
+			}
+		}
+		
+		//listener for choice3 button
+		//sets current attempt spot to 3 to specify yellow color
+		//increases position in attempt array
+		private class choice3Listener implements ActionListener
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				if (j <= 47)
+				{
+					attempt[j] = 3;
+					j++;
+				}
+			}
+		}
+		
+		//listener for choice4 button
+		//sets current attempt spot to 4 to specify green color
+		//increases position in attempt array
+		private class choice4Listener implements ActionListener
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				if (j <= 47)
+				{
+					attempt[j] = 4;
+					j++;
+				}
+			}
+		}
+		
+		//listener for choice5 button
+		//sets current attempt spot to 5 to specify blue color
+		//increases position in attempt array
+		private class choice5Listener implements ActionListener
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				if (j <= 47)
+				{
+					attempt[j] = 5;
+					j++;
+				}
+			}
+		}
+		
+		//listener for choice6 button
+		//sets current attempt spot to 6 to specify pink color
+		//increases position in attempt array
+		private class choice6Listener implements ActionListener
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				if (j <= 47)
+				{
+					attempt[j] = 6;
+					j++;
+				}
+			}
+		}
+		
+		//action listener for submit. 
+		//supposed to check for correct answer and change indicator buttons based on answer
 		private class ButtonListener implements ActionListener
 		{
 						public void actionPerformed(ActionEvent event) {
@@ -1399,25 +1492,24 @@ public class BoardPanel extends JPanel{
 	
 	}
 
+	//returns the correctness
 	public static int[][] errorcheck(int[][] response, int[]attempt,int[]code,int i) {
 		for (int k=0;k<=code.length;k++)
 		{
 			if (attempt[k]==code[k])//test for exact match
 			{
-				response[k][i] = 2;
+				response[k][i] = 2;//if 2 then peg should turn black
 			}
 			else
 			{
-				for (int l=0;l<=attempt.length;l++)//rotates through the other positions of the guess
-				{
-					if (attempt[k]==code[l])//test for non-exact match
+			
+					if (attempt[k]!=code[k])//test for non-exact match
 					{
-						response[k][i] = 1;
+						response[k][i] = 1;//if 1 peg should turn white
 					}
-				}	
 			}
 		}
-		return response;
+		return response;//should return the response
 		
 	}
 }	
